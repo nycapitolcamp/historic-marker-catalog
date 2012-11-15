@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.0"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<welcome-file-list>
+		<welcome-file>index.xhtml</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>Log4J</servlet-name>
+		<servlet-class>com.capitolcamp.historicmarkers.servlet.Log4JInitServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+
+	<servlet>
+		<servlet-name>InfoServlet</servlet-name>
+		<servlet-class>com.capitolcamp.historicmarkers.servlet.InfoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InfoServlet</servlet-name>
+		<url-pattern>/info/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Jersey REST Service</servlet-name>
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>com.capitolcamp.historicmarkers.ws</param-value>
+		</init-param>
+		<init-param>
+			<param-name>com.sun.jersey.config.feature.Redirect</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Jersey REST Service</servlet-name>
+		<url-pattern>/s/*</url-pattern>
+	</servlet-mapping>
+	
+
+</web-app>
